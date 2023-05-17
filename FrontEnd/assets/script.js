@@ -1,18 +1,34 @@
-fetch('http://localhost:5678/api/works')
-.then(response => response.json())
-.then(data => {
-  // console.log(data);
 
-  // const imageURLs = data.map(item => item["imageUrl"]);
-  // console.log(imageURLs);
-    afficherImages(data);
+const gallery = document.getElementById('gallery');
+const filtres = document.getElementsByClassName('filtres')[0]
+let works = []
+let categories = []
+
+const getWorks = async() => {
+    await fetch('http://localhost:5678/api/works')
+  .then(response => response.json())
+  .then(data => {
+      works.push(...data);
+    })
+  .catch(error => {
+    console.error('Une erreur s\'est produite :', error);
+  });
+}
+
+console.log(filtres)
+
+const getCategories = async() => {
+  await fetch('http://localhost:5678/api/categories')
+  .then(response => response.json())
+  .then(data => {
+    categories.push(...data);
   })
-.catch(error => {
-  console.error('Une erreur s\'est produite :', error);
-});
+  .catch(error => {
+    console.error('Une erreur s\'est produite :', error);
+  });
+}
 
-function afficherImages(maListeObjetImage) {
-  const gallery = document.getElementById('gallery');
+const afficherImages = (maListeObjetImage) => {
 
   maListeObjetImage.map(unSeulObjetImage => {
     const img = document.createElement('img');
@@ -31,7 +47,37 @@ function afficherImages(maListeObjetImage) {
   });
 }
 
-const works = [
+const creerBouton = (name, id) => {
+  const bouton = document.createElement('button') 
+  bouton.type = "button"
+  bouton.innerHTML = name
+  bouton.id = id
+  bouton.classList.add('button')
+  bouton.classList.add('buttonHighlight')
+  filtres.appendChild(bouton)
+}
+
+const afficherFiltres = (listeCategories) => {
+  creerBouton('Tous','all')
+  listeCategories.forEach(element => {
+    creerBouton(element.name, element.id)
+  });
+}
+
+const init = async() => {
+  await getWorks()
+  await getCategories()
+  afficherFiltres(categories)
+  afficherImages(works)
+}
+
+init()
+
+
+
+
+
+const worksData = [
   {
     "id": 1,
     "title": "Abajour Tahina",
@@ -155,5 +201,4 @@ const works = [
   }
 ]
 
-// afficherImages(works);
 
