@@ -1,4 +1,3 @@
-
 const gallery = document.getElementById('gallery');
 const filtres = document.getElementsByClassName('filtres')[0]
 let works = []
@@ -15,7 +14,7 @@ const getWorks = async() => {
   });
 }
 
-console.log(filtres)
+// console.log(filtres)
 
 const getCategories = async() => {
   await fetch('http://localhost:5678/api/categories')
@@ -28,17 +27,17 @@ const getCategories = async() => {
   });
 }
 
-const afficherImages = (maListeObjetImage) => {
+const afficherImages = (images) => {
+  gallery.innerHTML = '';
 
-  maListeObjetImage.map(unSeulObjetImage => {
+  images.forEach((image) => {
     const img = document.createElement('img');
-    img.src = unSeulObjetImage["imageUrl"];
-    img.title = unSeulObjetImage["title"];
-    console.log(gallery);
+    img.src = image.imageUrl;
+    img.title = image.title;
 
     const title = document.createElement('p');
-    title.textContent = unSeulObjetImage.title;
-    
+    title.textContent = image.title;
+
     const container = document.createElement('div');
     container.appendChild(img);
     container.appendChild(title);
@@ -48,30 +47,41 @@ const afficherImages = (maListeObjetImage) => {
 }
 
 const creerBouton = (name, id) => {
-  const bouton = document.createElement('button') 
-  bouton.type = "button"
-  bouton.innerHTML = name
-  bouton.id = id
-  bouton.classList.add('button')
-  bouton.classList.add('buttonHighlight')
-  filtres.appendChild(bouton)
-}
+  const bouton = document.createElement('button');
+  bouton.type = 'button';
+  bouton.innerHTML = name;
+  bouton.id = id;
+  bouton.classList.add('button');
+  bouton.classList.add('buttonHighlight');
+  filtres.appendChild(bouton);
 
-const afficherFiltres = (listeCategories) => {
-  creerBouton('Tous','all')
-  listeCategories.forEach(element => {
-    creerBouton(element.name, element.id)
+  bouton.addEventListener('click', () => {
+    if (id === 'all') {
+      afficherImages(works);
+    } else {
+      const imagesFiltrees = works.filter(
+        (image) => image.categoryId === parseInt(id)
+      );
+      afficherImages(imagesFiltrees);
+    }
   });
 }
 
-const init = async() => {
-  await getWorks()
-  await getCategories()
-  afficherFiltres(categories)
-  afficherImages(works)
+const afficherFiltres = (listeCategories) => {
+  creerBouton('Tous', 'all');
+  listeCategories.forEach((element) => {
+    creerBouton(element.name, element.id);
+  });
 }
 
-init()
+const init = async () => {
+  await getWorks();
+  await getCategories();
+  afficherFiltres(categories);
+  afficherImages(works);
+}
+
+init();
 
 
 
