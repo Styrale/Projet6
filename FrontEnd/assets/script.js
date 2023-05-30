@@ -2,6 +2,8 @@ const gallery = document.getElementById('gallery');
 const filtres = document.getElementsByClassName('filtres')[0]
 let works = []
 let categories = []
+let isLogged = sessionStorage.getItem("user")
+console.log(isLogged)
 
 const getWorks = async() => {
     await fetch('http://localhost:5678/api/works')
@@ -14,7 +16,6 @@ const getWorks = async() => {
   });
 }
 
-// console.log(filtres)
 
 const getCategories = async() => {
   await fetch('http://localhost:5678/api/categories')
@@ -65,6 +66,20 @@ const creerBouton = (name, id) => {
       afficherImages(imagesFiltrees);
     }
   });
+}
+
+if (isLogged !== null) {
+  const bannerEl = document.createElement('div');
+  bannerEl.classList.add('admin_panel');
+  const editionEl = document.createElement('p');
+  const buttonEl = document.createElement('button');
+  editionEl.innerHTML = 'Mode Edition';
+  buttonEl.classList.add('admin_button');
+  buttonEl.innerHTML = 'Publier les changements';
+  bannerEl.append(editionEl);
+  bannerEl.append(buttonEl);
+  document.header.appendChild(bannerEl);
+  console.log(bannerEl)
 }
 
 const afficherFiltres = (listeCategories) => {

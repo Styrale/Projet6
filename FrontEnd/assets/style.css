@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: #FFFEF8;
 }
 ol, ul {
 	list-style: none;
@@ -95,6 +96,31 @@ nav li {
 	font-size: 1.2em;
 }
 
+a {
+	font-size:125%;
+	margin-left: 10px;
+	margin-right: 10px;
+	font-family: inherit
+;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #B1663C;
+}
+
 li:hover {
 	color: #B1663C;
 }
@@ -137,7 +163,7 @@ li:hover {
     margin: 10px 0px;
     padding: 10px 10px;
 	min-width: 100px;
-    background-color: white;
+    background-color: #FFFEF8;
     border-style: solid;
     border-width: 2px;
     border-radius: 1px;
@@ -145,17 +171,15 @@ li:hover {
     font-weight: 600;
     font-size: 16px;
     line-height: 17px;
-    color: var(--drak-grey-color);
-    border-color: #F2F2F2;
-    color: var(--main-color);
-    border-color: var(--main-color);
-    color: var(--second-color);
-    border-color: var(--second-color);
+	color: #1D6154;
+    border-color: #1D6154;;
     border-radius: 39px;
 }
 
 .buttonHighlight:hover {
-    background-color: #DEEBFF;
+    background-color: #1D6154;
+	color: white;
+	
 }
 
 .gallery {
@@ -219,3 +243,100 @@ footer nav ul {
 	margin: 2em
 }
 
+.login-css {
+	display: flex;
+	flex-direction: column;
+}
+
+.login-css a {
+	display: flex;
+	justify-content: space-around;
+	text-decoration: underline;
+	font-size: small;
+
+}
+
+.login-css h1 {
+	font-family: 'Syne';
+font-style: normal;
+font-weight: 700;
+font-size: 30px;
+line-height: 36px;
+text-align: center;
+color: #1D6154;
+}
+
+.form {
+	margin-top: 30px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.login-element {
+	display: flex;
+	margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+input[type="email"] {
+    width: 379px;
+    height: 50px;
+    border: 2px;
+	box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
+    padding-left: 20px;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+input[type="password"] {
+    width: 379px;
+    height: 50px;
+    border: 2px;
+	box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
+    padding-left: 20px;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+input[type="submit"] {
+	width: 179px;
+	height: 36px;
+	display: flex;
+	justify-content: center;
+	border: 5px;
+}
+
+.error {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: red;
+	font-size: large;
+}
+
+.footer {
+	position: fixed;
+	display: flex;
+	justify-content: flex-end;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	background-color: white;
+}
+
+.footer-text {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: space-around;
+	margin-right: 10%;
+}
+
+.admin_panel {
+	height: 40px;
+	background-color: black;
+}
