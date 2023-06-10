@@ -57,7 +57,7 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 109px 0
 }
 section {
 	margin: 50px 0
@@ -106,6 +106,7 @@ a {
 
 a:link {
     text-decoration: none;
+	color: black;
 }
 
 a:active {
@@ -174,6 +175,66 @@ li:hover {
 	color: #1D6154;
     border-color: #1D6154;;
     border-radius: 39px;
+	cursor: pointer;
+}
+
+.button-add {
+    margin: 10px 0px;
+    padding: 10px 10px;
+	min-width: 70%;
+    background-color: #1D6154;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 1px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 17px;
+	color: white;
+    border-color: #1D6154;;
+    border-radius: 39px;
+	cursor: pointer;
+}
+
+
+.submit-button {
+	margin: 10px 0px;
+    padding: 10px 10px;
+	min-width: 33%;
+    background-color: #A7A7A7;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 1px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 17px;
+	color: white;
+    border-color: #A7A7A7;;
+    border-radius: 39px;
+	cursor: pointer;
+}
+
+
+.image-button {
+	margin: 10px 0px;
+    padding: 15px 15px;
+	min-width: 33%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    background-color: #A7A7A7;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 1px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 17px;
+	color: #306685;
+    border-color: #A7A7A7;;
+    border-radius: 39px;
+	cursor: pointer;
 }
 
 .buttonHighlight:hover {
@@ -236,6 +297,22 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
+
+select {
+	font-family: inherit;
+	padding-top: 10px;
+	padding-bottom: 10px;  
+	padding-right: 30px;
+	color: #000000;
+	border-color: #fff;
+	cursor: pointer;
+	display: flex;
+    width: 100%;
+    height: 50px;
+    font-size: 1.2em;
+    outline: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  }
 
 footer nav ul {
 	display: flex;
@@ -337,6 +414,287 @@ input[type="submit"] {
 }
 
 .admin_panel {
-	height: 40px;
+	height: 59px;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	font-size: 18px;
+	text-align: center;
 	background-color: black;
+	margin: 0;
+}
+
+.admin_panel a {
+	color: white;
+	margin-right: 30px;
+	font-size: 16px;
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+}
+
+.admin_button {
+	min-width: 100px;
+	height: 60%;
+    background-color: #FFFEF8;
+    border-style: solid;
+    border-width: 2px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+	color: black;
+    border-color: black;;
+    border-radius: 39px;
+}
+
+.logo_image {
+	height: 20px;
+	margin-right: 15px;
+}
+
+.logo_inner {
+		height: 20px;
+		margin-left: 30px;
+		margin-right: -5px;
+		filter: invert(100%) ;
+}
+
+h2 a {
+	color: black;
+	font-size: 16px;
+
+}
+
+.inner_text {
+	color: black;
+	font-size: 16px;
+	font-weight: 200;
+	position: relative;
+	bottom: 4px;
+	cursor: pointer;
+
+}
+
+.inner_text_photo {
+	color: black;
+	font-size: 16px;
+	position: relative;
+	bottom: 44px;
+	left: 30px;
+
+}
+
+.logo_inner_photo {
+	height: 20px;
+	margin-left: 30px;
+	margin-right: -5px;
+	filter: invert(100%) ;
+	position: relative;
+	bottom: 40px;
+	left: 30px;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+	background-color: #fff;
+	margin: 10% auto;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	border: 1px solid #ccc;
+	max-width: 70%;
+	padding-top: 40px;
+  }
+
+  .modal-content h2 {
+	color: #000;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+	line-height: 30px;
+	text-align: center;
+  }
+
+.img-modal {
+	display: grid;
+	grid-template-columns: 20% 20% 20% 20% 20%;
+	margin-left: 15% ;
+	margin-right: 15%;
+	margin-top: 20px;
+	justify-content: center;
+	gap: 10px;
+}
+
+.img-modal img {
+	max-width: 100%;
+	display: flex;
+	gap: 0px;
+}
+
+.back-button {
+	width: 40px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	cursor: pointer;
+	filter: invert(50%);
+	float: left;
+	position: relative;
+	left: 0px;
+	top: -35px
+}
+
+.back-button:hover {
+	color: #000;
+}
+  
+.close {
+	color: #aaa;
+	position: relative;
+	left: 95%;
+	width: 20px;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+	display: flex;
+	justify-content: flex-end;
+}
+  
+.close:hover {
+	color: #000;
+}
+
+.delete-img {
+	position: relative;
+	top: 35px;
+	right: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: rgb(243, 8, 8);
+	background-color: white;
+	border-radius: 10px;
+	float: right;
+	font-size: 28px;
+	width: 25px;
+	height: 25px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.underline {
+	display: block;
+	height: 3px;
+	width: 80%;
+	background-color:#B3B3B3;
+	margin-top: 70px;
+	margin-left: 10%;
+	margin-right: 10%;
+;
+	margin-bottom: 15px;
+}
+
+.edit-buttons {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	margin-bottom: 40px;
+	margin-top: 20px;
+}
+
+.delete {
+	color: red;
+	cursor: pointer;
+}
+
+.champ-photo {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	background-color: #E8F1F6;
+	width: 70%;
+	height: 400px;
+	gap: 20px;
+}
+
+.new-image {
+	height: 100%;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.formulaire-depot {
+	display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+label {
+	display: flex;
+	flex-direction: column;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.img-file {
+	width: 20%;
+	margin-top: 7%;
+}
+
+.image-menu {
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 15px;
+}
+
+.image-menu p {
+	font-size: 115%;
+}
+
+.select-categorie {
+	display: flex;
+	width: 100%;
+	height: 50px;
+    font-size: 1.2em;
+    border: none;
+	outline: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+
+a:hover {
+    color: #B1663C;
+}
+
+li:hover {
+	color: #B1663C;
+}
+
+.submit-button:hover {
+	background-color: #1D6154;
+	border-color: #1D6154 !important;
 }
