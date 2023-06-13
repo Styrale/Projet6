@@ -5,6 +5,7 @@ const divPublish = document.createElement('button')
 const divDelete = document.createElement('a')
 const filtres = document.getElementsByClassName('filtres')[0]
 let newImage;
+let titre;
 var uploadedImage = "";
 let works = []
 let categories = []
@@ -14,9 +15,9 @@ console.log(isLogged)
 const getWorks = async() => {
     await fetch('http://localhost:5678/api/works')
   .then(response => response.json())
-  .then(data => {
-      works.push(...data);
-    })
+    .then(data => {
+        works.push(...data);
+      })
   .catch(error => {
     console.error('Une erreur s\'est produite :', error);
   });
@@ -43,6 +44,7 @@ const afficherImages = (images) => {
     img.src = image.imageUrl;
     img.title = image.title;
     container.setAttribute('data-id', image.id);
+    container.classList.add('gallery-item')
 
     const title = document.createElement('p');
     title.textContent = image.title;
@@ -119,11 +121,12 @@ if (isLogged !== null) {
 
 // modale
 
-  function openModalGallery(list) {
+  function openModalGallery() {
     const divModal = document.createElement('div');
     const modalGallery = document.getElementById('modalGallery');
     const divUnderline = document.createElement('div');
     const divBoutons = document.createElement('div');
+    console.log(works)
 
     
     closeButton.classList.add('close');
@@ -145,7 +148,7 @@ if (isLogged !== null) {
     divBoutons.appendChild(divPublish);
     divBoutons.appendChild(divDelete);
 
-    list.forEach((item) => {
+    works.forEach((item) => {
       const imgModal = document.createElement('img');
       const divImage = document.createElement('div');
       const spanModal = document.createElement('span');
@@ -163,10 +166,13 @@ if (isLogged !== null) {
         const response = await deleteWork(item.id)
         if(response.status === 204) {
           const worksToDelete = document.querySelectorAll(`[data-id = "${item.id}"]`);
-          worksToDelete.forEach(item => item.remove())
+          worksToDelete.forEach(item => item.remove());
+          works = [];
+          await getWorks();
         };
       })
 
+      divImage.classList.add('gallery-img')
       divImage.setAttribute('data-id', item.id);
       imgModal.crossOrigin = 'anonymous';
 
@@ -219,7 +225,7 @@ if (isLogged !== null) {
       formulaireHeader.innerHTML = "Ajout photo"
       fileImage.src = './assets/icons/img-file.png';
       fileInput.type = 'file';
-      fileInput.accept = 'image/jpg, png';
+      fileInput.accept = 'image/jpg, image/png, image/jpeg';
       fileFormats.innerHTML = "jpg, png : 4mo max";
       divBouton.innerHTML = " + Ajouter photo";
       titreTitle.innerHTML = "Titre"
@@ -257,7 +263,6 @@ if (isLogged !== null) {
         const categorieId = categorieSelect.value;
       
         if (!newImage || !titre || !categorieId) {
-          console.log(newImage, titre, categorieId)
           alert('Veuillez remplir tous les champs');
           return;
         }
@@ -265,8 +270,8 @@ if (isLogged !== null) {
         const formData = new FormData();
         formData.append('image', fileInput.files[0]);
         formData.append('title', titre);
-        formData.append('categoryId', categorieId);
-        console.log(newImage, titre, categorieId)
+        formData.append('category', categorieId);
+
         const response = await fetch('http://localhost:5678/api/works', {
           method: 'POST',
           headers: {
@@ -276,6 +281,7 @@ if (isLogged !== null) {
         });
       
         if (response.ok) {
+          works = [];
           alert('L\'image a été ajoutée avec succès');
           await getWorks();
           afficherImages(works);
@@ -286,6 +292,7 @@ if (isLogged !== null) {
           fileImage.style.display = 'block';
           divBouton.style.display = 'block';
           fileFormats.style.display = 'block';
+          openModalGallery();
         } else {
           alert('Une erreur s\'est produite lors de l\'ajout de l\'image');
         }
@@ -310,7 +317,7 @@ if (isLogged !== null) {
 // Bouton retour
 
       backButton.addEventListener('click', function() {
-        openModalGallery(works);
+        openModalGallery();
       });
     
 // Menu déroulant catégories
@@ -340,8 +347,7 @@ if (isLogged !== null) {
   const modal = document.getElementById("myModal");
 
   logo.addEventListener('click', function() {
-    openModalGallery(works);
-    console.log(works);
+    openModalGallery();
     modal.style.display = "block";
   });
 
@@ -377,3 +383,7 @@ const init = async () => {
 }
 
 init();
+
+
+// galerie ajout image affiche images supprimées si non refresh
+// format images taille diff
