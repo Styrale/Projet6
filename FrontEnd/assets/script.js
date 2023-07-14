@@ -9,26 +9,28 @@ let categories = [];
 let isLogged = sessionStorage.getItem("user") || null;
 console.log(isLogged);
 
-const getWorks = async () => {
-  try {
-    const response = await fetch('http://localhost:5678/api/works');
-    const data = await response.json();
-    works.push(...data);
-  } catch (error) {
+const getWorks = async() => {
+    await fetch('http://localhost:5678/api/works')
+  .then(response => response.json())
+    .then(data => {
+        works.push(...data);
+      })
+  .catch(error => {
     console.error('Une erreur s\'est produite :', error);
-  }
+  });
 };
 
-const getCategories = async () => {
-  try {
-    const response = await fetch('http://localhost:5678/api/categories');
-    const data = await response.json();
+
+const getCategories = async() => {
+  await fetch('http://localhost:5678/api/categories')
+  .then(response => response.json())
+  .then(data => {
     categories.push(...data);
-  } catch (error) {
+  })
+  .catch(error => {
     console.error('Une erreur s\'est produite :', error);
-  }
+  });
 };
-
 
 const afficherImages = (images) => {
   gallery.innerHTML = '';
@@ -361,12 +363,7 @@ if (isLogged !== null) {
 
   const loginLink = document.querySelector('a[href="./login.html"]');
   loginLink.innerHTML = 'logout';
-  loginLink.addEventListener("click", function() {
-    event.preventDefault()
-    sessionStorage.clear();
-    return window.location.assign("./index.html");
-  });
-};
+}
 
 const afficherFiltres = (listeCategories) => {
   creerBouton('Tous', 'all');

@@ -34,7 +34,7 @@ formElement.addEventListener("submit", async(event)=>{
         return;
     }
 
-    if (response.ok) {
+    if (response.status === 200) {
         sessionStorage.setItem("user", user.token);
         return window.location.assign("./index.html");
     }
