@@ -369,6 +369,9 @@ if (isLogged !== null) {
 };
 
 const afficherFiltres = (listeCategories) => {
+  if (isLogged !== null) {
+    return;
+  }
   creerBouton('Tous', 'all');
   listeCategories.forEach((element) => {
     creerBouton(element.name, element.id);
